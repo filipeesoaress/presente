@@ -1,0 +1,1533 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Cantinho 💜</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --lilas: #b99ae8;
+            --lilas-claro: #eee5ff;
+            --lilas-muito-claro: #faf7ff;
+            --roxo: #8b63c7;
+            --roxo-escuro: #69449f;
+            --roxo-profundo: #493269;
+            --rosa: #e9a6c3;
+            --rosa-claro: #ffeaf3;
+            --texto: #44364f;
+            --texto-claro: #7b6c87;
+            --branco: #ffffff;
+            --verde: #79c99b;
+            --verde-escuro: #367653;
+            --vermelho: #df718c;
+            --sombra: 0 15px 40px rgba(105, 68, 159, 0.14);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Poppins", sans-serif;
+            color: var(--texto);
+            background:
+                radial-gradient(circle at 10% 5%, #f3dff7 0%, transparent 35%),
+                radial-gradient(circle at 90% 95%, #eadcff 0%, transparent 35%),
+                radial-gradient(circle at 80% 35%, #ffeaf3 0%, transparent 30%),
+                var(--lilas-muito-claro);
+            overflow-x: hidden;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* Corações e decorações românticas */
+        .decoracao {
+            position: fixed;
+            color: rgba(139, 99, 199, 0.15);
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 0;
+            animation: flutuar 7s ease-in-out infinite;
+        }
+
+        .decoracao:nth-child(1) {
+            top: 12%;
+            left: 7%;
+        }
+
+        .decoracao:nth-child(2) {
+            top: 28%;
+            right: 8%;
+            animation-delay: 1s;
+        }
+
+        .decoracao:nth-child(3) {
+            bottom: 15%;
+            left: 12%;
+            animation-delay: 2s;
+        }
+
+        .decoracao:nth-child(4) {
+            bottom: 10%;
+            right: 15%;
+            animation-delay: 3s;
+        }
+
+        .coracoes-fundo {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .coracao-flutuante {
+            position: absolute;
+            bottom: -60px;
+            opacity: 0;
+            color: #d99acb;
+            text-shadow: 0 0 15px rgba(233, 166, 195, 0.3);
+            animation: subirCoracao linear infinite;
+            user-select: none;
+        }
+
+        @keyframes subirCoracao {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: .55;
+            }
+            80% {
+                opacity: .45;
+            }
+            100% {
+                transform: translateY(-115vh) rotate(35deg) scale(1.25);
+                opacity: 0;
+            }
+        }
+
+        @keyframes flutuar {
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tela {
+            min-height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 0;
+        }
+
+        .tela.ativa {
+            display: flex;
+        }
+
+        .card {
+            width: 100%;
+            background: rgba(255, 255, 255, .91);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(185, 154, 232, .3);
+            border-radius: 35px;
+            box-shadow: var(--sombra);
+            padding: 40px 30px;
+        }
+
+        .titulo {
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(2.6rem, 6vw, 4.5rem);
+            line-height: 1;
+            text-align: center;
+            color: var(--roxo-escuro);
+            margin-bottom: 12px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: var(--texto-claro);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Contador */
+        .contador {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .tempo {
+            padding: 18px 8px;
+            text-align: center;
+            background: var(--lilas-muito-claro);
+            border: 2px solid var(--lilas-claro);
+            border-radius: 20px;
+            min-width: 0;
+        }
+
+        .tempo span {
+            display: block;
+            font-family: "Baloo 2", sans-serif;
+            font-size: clamp(1.7rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--roxo);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .tempo small {
+            display: block;
+            margin-top: 7px;
+            color: var(--texto-claro);
+            font-size: .75rem;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+            border-radius: 18px;
+            padding: 15px 28px;
+            background: linear-gradient(135deg, var(--roxo), var(--roxo-escuro));
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(105, 68, 159, .22);
+            transition: .25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(105, 68, 159, .3);
+        }
+
+        .btn-osso {
+            border-radius: 50px 20px 50px 20px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        /* Área do Zeca */
+        .zeca-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto 30px;
+        }
+
+        .zeca-foto {
+            width: 190px;
+            height: 190px;
+            object-fit: contain;
+            flex-shrink: 0;
+            transition: transform .25s ease, opacity .2s ease;
+        }
+
+        .zeca-fala {
+            position: relative;
+            max-width: 570px;
+            padding: 22px 23px;
+            background: var(--branco);
+            border: 3px solid var(--lilas);
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(105, 68, 159, .12);
+            line-height: 1.6;
+        }
+
+        .zeca-fala::before {
+            content: "";
+            position: absolute;
+            left: -14px;
+            top: 55px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-left: 3px solid var(--lilas);
+            border-bottom: 3px solid var(--lilas);
+            transform: rotate(45deg);
+        }
+
+        .zeca-fala strong {
+            color: var(--roxo-escuro);
+        }
+
+        .btn-fala {
+            margin-top: 18px;
+            margin-right: 5px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 14px;
+            background: var(--lilas);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn-fala:hover {
+            background: var(--roxo);
+            transform: translateY(-2px);
+        }
+
+        /* Efeito hacker */
+        #efeitoHacker {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            display: none;
+            background: linear-gradient(135deg, #2d1744, #641f62, #311844);
+            color: #ffb8e8;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #efeitoHacker.ativo {
+            display: flex;
+            animation: piscar 1.2s ease;
+        }
+
+        .terminal {
+            width: 90%;
+            max-width: 800px;
+            font-family: monospace;
+            font-size: clamp(.8rem, 2vw, 1rem);
+            line-height: 1.8;
+            text-shadow: 0 0 10px #ff75d1;
+        }
+
+        @keyframes piscar {
+            0% { opacity: 0; }
+            15% { opacity: 1; }
+            30% { opacity: .3; }
+            45% { opacity: 1; }
+            60% { opacity: .5; }
+            100% { opacity: 1; }
+        }
+
+        /* Introdução */
+        .intro-desafio {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .intro-desafio h2 {
+            font-family: "Baloo 2", sans-serif;
+            text-align: center;
+            color: var(--roxo-profundo);
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 20px;
+        }
+
+        .intro-texto {
+            max-width: 750px;
+            margin: 0 auto 30px;
+            text-align: center;
+            color: var(--texto-claro);
+            line-height: 1.8;
+        }
+
+        .spoiler {
+            max-width: 650px;
+            margin: 25px auto;
+            padding: 15px 20px;
+            background: var(--rosa-claro);
+            border: 2px dashed var(--rosa);
+            border-radius: 18px;
+            text-align: center;
+            font-size: .9rem;
+            color: var(--texto);
+        }
+
+        /* Desafio */
+        .desafio-card {
+            max-width: 950px;
+            margin: auto;
+        }
+
+        .progresso {
+            width: 100%;
+            height: 10px;
+            background: var(--lilas-claro);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .progresso-barra {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--rosa), var(--roxo));
+            border-radius: 20px;
+            transition: width .4s ease;
+        }
+
+        .etapa {
+            text-align: center;
+            color: var(--texto-claro);
+            font-size: .85rem;
+            margin-bottom: 10px;
+        }
+
+        .memoria-foto-container {
+            width: fit-content;
+            max-width: min(100%, 390px);
+            min-height: 0;
+            margin: 8px auto 30px;
+            padding: 12px 12px 38px;
+            background: #fff;
+            border: 1px solid #eee8f3;
+            border-radius: 3px;
+            box-shadow: 0 8px 22px rgba(73, 50, 105, .16);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-1deg);
+            transition: transform .25s ease;
+        }
+
+        .memoria-foto-container:hover {
+            transform: rotate(0deg) translateY(-2px);
+        }
+
+        .memoria-foto {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            max-height: 280px;
+            object-fit: contain;
+        }
+
+        .pergunta {
+            font-family: "Baloo 2", sans-serif;
+            color: var(--roxo-profundo);
+            font-size: clamp(1.5rem, 4vw, 2.3rem);
+            text-align: center;
+            line-height: 1.25;
+            margin-bottom: 25px;
+        }
+
+        .alternativas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .alternativa {
+            padding: 16px;
+            border: 2px solid var(--lilas-claro);
+            background: white;
+            border-radius: 18px;
+            cursor: pointer;
+            color: var(--texto);
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .alternativa:hover {
+            border-color: var(--lilas);
+            background: var(--lilas-muito-claro);
+            transform: translateY(-2px);
+        }
+
+        .alternativa.correta {
+            background: #e9faef;
+            border-color: var(--verde);
+            color: var(--verde-escuro);
+        }
+
+        .alternativa.errada {
+            background: #fff0f3;
+            border-color: var(--vermelho);
+            color: #9b4056;
+        }
+
+        .alternativa.bloqueada {
+            pointer-events: none;
+        }
+
+        /* Resultado final */
+        .resultado-card {
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .certificado {
+            background: linear-gradient(135deg, #fff, var(--lilas-muito-claro));
+            border: 3px solid var(--lilas);
+            border-radius: 30px;
+            padding: 35px 25px;
+            margin-bottom: 35px;
+        }
+
+        .certificado h1 {
+            font-family: "Baloo 2", sans-serif;
+            color: var(--roxo-escuro);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+        }
+
+        .certificado p {
+            color: var(--texto-claro);
+            line-height: 1.7;
+        }
+
+        .cupons-titulo {
+            font-family: "Baloo 2", sans-serif;
+            color: var(--roxo-profundo);
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+
+        .cupons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .cupom {
+            position: relative;
+            background: white;
+            border: 2px dashed var(--lilas);
+            border-radius: 20px;
+            padding: 25px 18px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(105, 68, 159, .07);
+        }
+
+        .cupom-emoji {
+            display: block;
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+        }
+
+        .cupom h3 {
+            font-family: "Baloo 2", sans-serif;
+            color: var(--roxo-escuro);
+            font-size: 1.3rem;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .cupom p {
+            color: var(--texto-claro);
+            font-size: .85rem;
+            line-height: 1.5;
+            min-height: 65px;
+        }
+
+        .btn-cupom {
+            width: 100%;
+            margin-top: 15px;
+            padding: 11px;
+            border: none;
+            border-radius: 14px;
+            background: var(--roxo);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn-cupom:hover {
+            background: var(--roxo-escuro);
+            transform: translateY(-2px);
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(73, 50, 105, .55);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        .modal.ativo {
+            display: flex;
+        }
+
+        .modal-card {
+            width: min(450px, 100%);
+            padding: 30px;
+            text-align: center;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 25px 70px rgba(73, 50, 105, .25);
+            animation: aparecer .25s ease;
+        }
+
+        .modal-zeca {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .modal-card h3 {
+            font-family: "Baloo 2", sans-serif;
+            color: var(--roxo-escuro);
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .modal-card p {
+            color: var(--texto-claro);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: scale(.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @media (max-width: 850px) {
+            .contador {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .zeca-container {
+                flex-direction: column;
+            }
+
+            .zeca-fala::before {
+                display: none;
+            }
+
+            .cupons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 25px 18px;
+            }
+
+            .contador {
+                gap: 8px;
+            }
+
+            .tempo {
+                padding: 14px 5px;
+            }
+
+            .tempo span {
+                font-size: 1.6rem;
+            }
+
+            .tempo small {
+                font-size: .65rem;
+            }
+
+            .alternativas,
+            .cupons {
+                grid-template-columns: 1fr;
+            }
+
+            .memoria-foto-container {
+                max-width: min(100%, 310px);
+                padding: 9px 9px 28px;
+            }
+
+            .memoria-foto {
+                max-height: 220px;
+            }
+
+            .zeca-foto {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .coracao-flutuante,
+            .decoracao {
+                animation-duration: 20s;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="decoracao">💜</div>
+    <div class="decoracao">♡</div>
+    <div class="decoracao">💜</div>
+    <div class="decoracao">♡</div>
+
+    <div id="coracoesFundo" class="coracoes-fundo" aria-hidden="true"></div>
+
+    <div id="efeitoHacker">
+        <div class="terminal">
+            <div>&gt; Você é a Mulher da minha vida!</div>
+            <div>&gt; Eu te amo! ♡</div>
+            <div>&gt; Quero passar o resto da minha vida ao seu lado.</div>
+            <div>&gt; Eu te amo! ♡</div>
+            <div>&gt; Os meus dias são muito mais divertidos com você.</div>
+            <div>&gt; Eu te amo! ♡</div>
+            <div>&gt; Você é a Minha gatinha linda! </div>
+        </div>
+    </div>
+
+    <!-- 1. TELA INICIAL -->
+    <section id="telaInicio" class="tela ativa">
+        <div class="container">
+            <div class="card">
+                <h1 class="titulo">Nosso Tempo Juntos </h1>
+                <p class="subtitulo">
+                    Você é a mulher da minha vida. Eu te amo! ♡
+                </p>
+
+                <div class="contador">
+                    <div class="tempo"><span id="anos">0</span><small>anos</small></div>
+                    <div class="tempo"><span id="meses">0</span><small>meses</small></div>
+                    <div class="tempo"><span id="dias">0</span><small>dias</small></div>
+                    <div class="tempo"><span id="horas">00</span><small>horas</small></div>
+                    <div class="tempo"><span id="minutos">00</span><small>minutos</small></div>
+                    <div class="tempo"><span id="segundos">00</span><small>segundos</small></div>
+                </div>
+
+                <div class="zeca-container">
+                    <img class="zeca-foto" src="zeca-feliz.png" alt="Zeca">
+                    <div id="falaInicial" class="zeca-fala">
+                        <strong>Oi! Eu sou o Zeca! 🐶💜</strong>
+                        <br><br>
+                        Eu sou XITU! Esses números acima é o tempo que vocês estão juntos...
+                        Isso é muito tempo em vida de cachorro!
+                        <br>
+                        <button class="btn-fala" onclick="proximaFalaInicial()">Continuar 🐾</button>
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <button id="btnAvancarInicial" class="btn btn-osso" onclick="avancarParaInvasao()" style="display:none;">
+                        Avançar 🐾
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. TELA DA INVASÃO HACKER -->
+    <section id="telaInvasao" class="tela">
+        <div class="container">
+            <div class="card">
+                <div class="zeca-container">
+                    <img id="zecaInvasao" class="zeca-foto" src="zeca-hacker.png" alt="Zeca hacker">
+                    <div id="falaInvasao" class="zeca-fala"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. TELA DO DESAFIO -->
+    <section id="telaDesafio" class="tela">
+        <div class="container">
+            <div class="card desafio-card">
+                <div class="etapa">Memória <span id="numeroMemoria">1</span> de 12</div>
+                <div class="progresso">
+                    <div id="barraProgresso" class="progresso-barra"></div>
+                </div>
+
+                <div class="zeca-container">
+                    <img id="zecaDesafio" class="zeca-foto" src="zeca-pergunta.png" alt="Zeca">
+                    <div id="falaZeca" class="zeca-fala"></div>
+                </div>
+
+                <div class="memoria-foto-container">
+                    <img id="fotoMemoria" class="memoria-foto" src="images/memoria1.png" alt="Memória do casal">
+                </div>
+
+                <div id="alternativas" class="alternativas"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. TELA FINAL -->
+    <section id="telaFinal" class="tela">
+        <div class="container">
+            <div class="card resultado-card">
+                <div class="zeca-container">
+                    <img id="zecaFinal" class="zeca-foto" src="zeca-feliz2.png" alt="Zeca feliz">
+                    <div id="falaFinal" class="zeca-fala"></div>
+                </div>
+
+                <div class="certificado">
+                    <h1>Aprovada com 100% de Sucesso! 🏆💜</h1>
+                    <p>
+                        Você completou o
+                        <strong>Desafio das 12 Memórias</strong>!
+                        <br><br>
+                        E como eu prometi...
+                    </p>
+                    <br>
+                    <h2 style="color:var(--roxo-escuro);font-family:'Baloo 2';">
+                        VOCÊ GANHOU TODOS OS 12 CUPONS! 🎁
+                    </h2>
+                    <br><br>
+                        <strong>Parabéns pelo 1 ano juntos!</strong>
+                    </p>
+                </div>
+
+                <h2 class="cupons-titulo">🐶 Carteira de Cupons da Mamãe</h2>
+                <p class="subtitulo">
+                    Todos os seus 12 cupons estão disponíveis abaixo.
+                    <br>
+                    Clique em "Resgatar Cupom" para enviar a mensagem pelo WhatsApp.
+                </p>
+                <div id="listaCupons" class="cupons"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL -->
+    <div id="modal" class="modal" onclick="fecharModalFora(event)">
+        <div class="modal-card">
+            <img id="modalZeca" class="modal-zeca" src="zeca-feliz.png" alt="Zeca">
+            <h3 id="modalTitulo">Cupom</h3>
+            <p id="modalTexto">Cupom liberado!</p>
+            <button class="btn" onclick="fecharModal()">Fechar 💜</button>
+        </div>
+    </div>
+
+    <script>
+        /* Corações animados no fundo */
+        function criarCoracoes() {
+            const fundo = document.getElementById("coracoesFundo");
+            const simbolos = ["💜", "♡", "💕", "💗", "♥", "💖"];
+
+            for (let i = 0; i < 28; i++) {
+                const coracao = document.createElement("span");
+                coracao.className = "coracao-flutuante";
+                coracao.textContent = simbolos[Math.floor(Math.random() * simbolos.length)];
+                coracao.style.left = Math.random() * 100 + "%";
+                coracao.style.fontSize = (14 + Math.random() * 22) + "px";
+                coracao.style.animationDuration = (12 + Math.random() * 17) + "s";
+                coracao.style.animationDelay = (-Math.random() * 25) + "s";
+
+                fundo.appendChild(coracao);
+            }
+        }
+
+        criarCoracoes();
+
+        /* Configuração das 12 memórias */
+        const memorias = [
+            {
+                foto: "images/memoria-07.png",
+                pergunta: "Qual foi a data do primeiro encontro de vocês? Sei que foi no Cazolla (A foto é desse ano)",
+                alternativas: ["Dia 09/04/2025", "Dia 19/04/2025", "Dia 13/04/2025", "Dia 25/04/2025"],
+                correta: 1
+            },
+            {
+                foto: "images/memoria-01.png",
+                pergunta: "No seu aniversário do ano passado, o papai te deu um buquê com 3 Rosas de presente. Qual o significado das 3 rosas?",
+                alternativas: ["Eu(xito), Você e Ele", "Você, seu pai e sua mãe", "A quantidade de meses restantes para te pedir em namoro", "Não tem significado nenhum"],
+                correta: 0
+            },
+            {
+                foto: "images/memoria-02.png",
+                pergunta: "No dia 17/10/2025 vocês começaram a namorar, qual o nome do restaurante que o papai te pediu em namoro?",
+                alternativas: ["Jabú Bar & Restrô", "Pasta em Casa", "Jabú Ticaba", "Jabú Restrô & Bar"],
+                correta: 3
+            },
+            {
+                foto: "images/memoria-06.png",
+                pergunta: "O que tem escrito na parte interna da aliança de vocês?",
+                alternativas: ["Filipe e Ailim", "17.10", "17.10.2025", "Filipe e Ailim 17.10"],
+                correta: 1
+            },
+            {
+                foto: "images/memoria-10.png",
+                pergunta: "Final do ano vocês foram no pelourinho ver a decoração de natal, qual a roupa que vocês usaram?",
+                alternativas: ["All black", "Marrom e Bege", "Camisa do Vitória", "Branco e Azul"],
+                correta: 2
+            },
+            {
+                foto: "images/memoria-03.png",
+                pergunta: "O ano novo de 2025 para 2026, passamos todos juntos, qual foi o presente que você ganhou do papai?",
+                alternativas: ["Não me deu nenhum presente", "Camisa de crochê", "Havaianas", "Uma camisa"],
+                correta: 2
+            },
+            {
+                foto: "images/memoria-04.png",
+                pergunta: "No primeiro dia do ano foi um almoço com a familia do seu pai, nesse dia aconteceu algo em específico com o papai, o que foi?",
+                alternativas: ["Eu(XITO) acabei Fugindo", "Os homens da familia do seu pai 'ameaçaram' ele", "Os homens da familia do seu pai parabenizaram ele", "Ele escorreu e caiu na piscina"],
+                correta: 1
+            },
+            {
+                foto: "images/memoria-05.png",
+                pergunta: "No primeiro passeio de 2026 vocês foram almoçar fora, passear na orla e tomar sorvete (Nem me levaram 🥺) O que aconteceu de engraçado nesse dia?",
+                alternativas: ["O Uber estava discutindo com a mulher dele por telefone com a gente no carro", "Você teve uma crise de tosse no meio do restaurante", "Caimos andando de Jet", "O papai usou 20 guardanamos para se limpar"],
+                correta: 2
+            },
+            {
+                foto: "images/memoria-11.png",
+                pergunta: "Depois vocês foram no pelourinho (Não me levaram de novo 🥺) Qual foi a paleta de cores que estavam usando no dia?",
+                alternativas: ["Azul e Branco", "Marrom e Preto", "Marrom e Branco", "Branco e Preto"],
+                correta: 0
+            },
+            {
+                foto: "images/memoria-08.png",
+                pergunta: "Qual presente você ganhou do papai no primeiro dia dos namorados?",
+                alternativas: ["Uma Joia", "Te levou para jantar em um restaurante", "Uma camisa Marrom de crochê", "Uma saia Marrom de crochê"],
+                correta: 2
+            },
+            {
+                foto: "images/memoria-09.png",
+                pergunta: "No São João o papai fez a surpresa de ir até Cachoeira para te ver. Em qual dia ele chegou?",
+                alternativas: ["25/07", "26/07", "27/07", "28/07"],
+                correta: 2
+            },
+            {
+                foto: "images/memoria-12.jpeg",
+                pergunta: "Hoje vocês estão comemorando 1 ano de namoro. Qual o motivo para o papai escolher essa data?",
+                alternativas: ["É a data do seu aniversário - a data do aniversário dele", "Ele apenas escolheu um dia aleatório", "É a data do aniversário dele - a data do seu aniversário", "Eu(Cheetos) que escolhi"],
+                correta: 2
+            }
+        ];
+
+        /* Os 12 cupons */
+        const cupons = [
+            {
+                emoji: "🍝",
+                nome: "Vale Jantar/Almoço",
+                descricao: "Sem discussão sobre onde ir! Hoje você escolhe o restaurante.",
+                mensagem: "Au au! O Zeca mandou avisar que acabei de resgatar o Cupom Vale Jantar/Almoço no Restaurante que eu que escolher! <3"
+            },
+            {
+                emoji: "💜",
+                nome: "Vale Encontro Surpresa",
+                descricao: "Um encontro planejado 100% por mim, sem você precisar pensar em nada.",
+                mensagem: "Au au! O Zeca mandou avisar que acabei de resgatar o Cupom Vale Encontro Surpresa! <3"
+            },
+            {
+                emoji: "💆‍♀️",
+                nome: "Vale Massagem Relaxante",
+                descricao: "Massagem com duração mínima de 20 minutos.",
+                mensagem: "Au au! O Zeca mandou avisar que acabei de resgatar o Cupom Vale Massagem Relaxante! <3"
+            },
+            {
+                emoji: "🏖️",
+                nome: "Vale Passeio Especial em Família",
+                descricao: "Um dia de parque ou praia com o Zeca junto.",
+                mensagem: "Au au! O Zeca mandou avisar que acabei de resgatar o Cupom Vale Passeio Especial em Família! <3"
+            },
+            {
+                emoji: "🎬",
+                nome: "Vale Escolher o Filme ou Série",
+                descricao: "Você escolhe sem reclamações. Mesmo que seja dorama ou reality show.",
+                mensagem: "Au au! O Zeca mandou avisar que acabei de resgatar o Cupom Vale Escolher o Filme ou Série! <3"
+            },
+            {
+                emoji: "🍫",
+                nome: "Vale Docinho / Sobremesa",
+                descricao: "Deu vontade de comer doce? Compro um docinho para você.",
+                mensagem: "Au au! O Zeca mandou avisar que acabei de resgatar o Cupom Vale Docinho ou Sobremesa! <3"
+            },
+            {
+                emoji: "😈",
+                nome: "Vale Sapecagem",
+                descricao: "Está com tesão? É só resgatar o Cupom Sapecagem. Quantidade ilimitada.",
+                mensagem: "O Zeca não pode saber desse! Acabei de resgatar o Cupom Vale Sapecagem! <3"
+            },
+            {
+                emoji: "⚖️",
+                nome: "Vale Você Tem Razão",
+                descricao: "Direito de vencer uma discussão boba automaticamente.",
+                mensagem: "Au au! O Zeca mandou avisar que acabei de resgatar o Cupom Vale Você Tem Razão! <3"
+            },
+            {
+                emoji: "🍕",
+                nome: "Vale Pizza / Pastel",
+                descricao: "Pediu, chegou! Pizza / Pastel de domingo.",
+                mensagem: "Au au! O Zeca mandou avisar que acabei de resgatar o Cupom Pizza / pastel! <3"
+            },
+            {
+                emoji: "🤗",
+                nome: "Vale Abraço Apertado & Carinho Infinito",
+                descricao: "Resgatável a qualquer segundo do dia. Quantidade ilimitada.",
+                mensagem: "Au au! O Zeca mandou avisar que acabei de resgatar o Cupom Vale Abraço Apertado & Carinho Infinito! <3"
+            },
+            {
+                emoji: "😔",
+                nome: "Vale Sofrimento",
+                descricao: "Deixo você tirar todos os meus cravos e espinhas sem reclamar.",
+                mensagem: "Au au! O Zeca mandou avisar que acabei de resgatar o Cupom Vale Sofrimento! <3"
+            },
+            {
+                emoji: "🕺",
+                nome: "Vale Dancinha",
+                descricao: "Você coloca a música e eu danço. (Apenas quando estivermos a sós)",
+                mensagem: "Au au! O Zeca mandou avisar que acabei de resgatar o Cupom Dançinha! <3"
+            }
+        ];
+
+        /* Contador de tempo juntos */
+        const dataInicio = new Date(2025, 9, 17, 20, 20, 0);
+
+        function calcularTempo(inicio, agora) {
+            /*
+             * Calcula anos e meses usando datas de calendário.
+             * Depois calcula os dias e o tempo restante.
+             * O restante é limitado a zero para impedir valores negativos.
+             */
+            if (agora < inicio) {
+                return {
+                    anos: 0,
+                    meses: 0,
+                    dias: 0,
+                    horas: 0,
+                    minutos: 0,
+                    segundos: 0
+                };
+            }
+
+            let cursor = new Date(inicio);
+            let anos = 0;
+            let meses = 0;
+
+            while (true) {
+                const proximo = new Date(cursor);
+                proximo.setFullYear(proximo.getFullYear() + 1);
+
+                if (proximo <= agora) {
+                    cursor = proximo;
+                    anos++;
+                } else {
+                    break;
+                }
+            }
+
+            while (true) {
+                const proximo = new Date(cursor);
+                proximo.setMonth(proximo.getMonth() + 1);
+
+                if (proximo <= agora) {
+                    cursor = proximo;
+                    meses++;
+
+                    if (meses === 12) {
+                        anos++;
+                        meses = 0;
+                    }
+                } else {
+                    break;
+                }
+            }
+
+            const diferencaSegundos = Math.max(
+                0,
+                Math.floor((agora.getTime() - cursor.getTime()) / 1000)
+            );
+
+            const dias = Math.floor(diferencaSegundos / 86400);
+            const horas = Math.floor((diferencaSegundos % 86400) / 3600);
+            const minutos = Math.floor((diferencaSegundos % 3600) / 60);
+            const segundos = diferencaSegundos % 60;
+
+            return { anos, meses, dias, horas, minutos, segundos };
+        }
+
+        function atualizarContador() {
+            const tempo = calcularTempo(dataInicio, new Date());
+
+            document.getElementById("anos").textContent = tempo.anos;
+            document.getElementById("meses").textContent = tempo.meses;
+            document.getElementById("dias").textContent = tempo.dias;
+            document.getElementById("horas").textContent = String(tempo.horas).padStart(2, "0");
+            document.getElementById("minutos").textContent = String(tempo.minutos).padStart(2, "0");
+            document.getElementById("segundos").textContent = String(tempo.segundos).padStart(2, "0");
+        }
+
+        atualizarContador();
+        setInterval(atualizarContador, 1000);
+
+        /* Falas iniciais do Zeca */
+        let etapaFalaInicial = 1;
+
+        function proximaFalaInicial() {
+            const fala = document.getElementById("falaInicial");
+            const botao = document.getElementById("btnAvancarInicial");
+
+            if (etapaFalaInicial === 1) {
+                fala.innerHTML = `
+                    <strong>Eu acompanhei tudo de pertinho... 🐶💜</strong>
+                    <br><br>
+                    E posso afirmar uma coisa: essa história tem muito amor, muita risada e, com toda certeza, alguns momentos em que sarrei vocês 😂🐾
+                    <br>
+                    <button class="btn-fala" onclick="proximaFalaInicial()">Continuar 🐾</button>
+                `;
+                etapaFalaInicial++;
+                return;
+            }
+
+            if (etapaFalaInicial === 2) {
+                fala.innerHTML = `
+                    <strong>Minha primeira impressão sobre o papai</strong>
+                    <br><br>
+                    No começo não curti muito ter que dividir sua atenção...
+                    Mas ao ver o quanto ele te faz rir e ser feliz, deixei ele ficar.
+                    <br><br>
+                    Foi a melhor escolha que fiz!! 
+                    <br>
+                    PAPA é 1000000000000000000000/10 
+                    <br> <br>
+                    Ustê MAMA 5/10, Melhore.
+                    <br>
+                    <button class="btn-fala" onclick="proximaFalaInicial()">Continuar 🐾</button>
+                `;
+                etapaFalaInicial++;
+                return;
+            }
+
+            if (etapaFalaInicial === 3) {
+                fala.innerHTML = `
+                    <strong>Um Presente Especial🐶</strong>
+                    <br><br>
+                    Preparamos algo muito especial que vem logo em seguida...Quer dar uma olhada?
+                `;
+                botao.style.display = "inline-flex";
+            }
+        }
+
+        /* Invasão hacker */
+        let etapaInvasao = 0;
+
+        const falasInvasao = [
+            {
+                foto: "zeca-semgraca.png",
+                texto: `
+                    <strong>
+                        Só mais uma coisinha...
+                    </strong>
+                    <br> <br>
+                    Antes de começar o Desafio queria falar uma coisinha que o papai me pediu.
+                `
+            },
+            {
+                foto: "zeca-triste.png",
+                texto: `
+                    <strong>Sobre o presente do papai 🐶</strong>
+                    <br><br>
+                    O papai está passndo por uma fase um pouco mais apertada agora...
+                    Por isso, não deu para comprar aquele presente que você tanto merece, como das outras vezes.
+                    <br>
+                    Mas ele preparou algo simples, feito com todo amor do mundo: Te levou para jantar e propos este pequeno desafio!
+                    <br>
+                    Ele pediu para avisar que <strong>te ama muito e que você a mulher da vida dele 💜</strong> 
+                    <br>
+                    Logo as coisas vão melhorar. E assim que tudo se acertar, 
+                     ele vai comprar um presente incrível que você realmente merece. 🐶
+                    <br> <br>
+
+                    Espero que você entenda e goste dos presente 🥺🐶
+                `
+            },
+            {
+                foto: "zeca-feliz.png",
+                texto: `
+                    <strong>Voltando ao Desafio 🐶</strong>
+                    <br><br>
+                    Como eu sou o cão guarda desse
+                    relacionamento, serei o narrador desse desafio que se chama:
+                    <strong>Desafio das Memórias!</strong> 📸
+                `
+            },
+            {
+                foto: "zeca-feliz.png",
+                texto: `
+                    <strong>São 12 fotos especiais. 📸</strong>
+                    <br><br>
+                    Em cada foto você vai precisar
+                    lembrar de alguns detalhes
+                    daquele momento.
+                    <br><br>
+                    Pode ser o lugar, a roupa,
+                    o que vocês comeram ou até
+                    alguma piada interna.
+                `
+            },
+            {
+                foto: "zeca-feliz2.png",
+                texto: `
+                    <strong>Uma coisa importante... 👀</strong>
+                    <br><br>
+                    A regra do jogo é simples, se você acertar a pergunta vai ganhar um cupom
+                    que pode ser usado com o papai. Mas se você errar não ganha o cupom.
+                `
+            }
+        ];
+
+        function avancarParaInvasao() {
+            const efeito = document.getElementById("efeitoHacker");
+            efeito.classList.add("ativo");
+
+            setTimeout(() => {
+                efeito.classList.remove("ativo");
+                mostrarTela("telaInicio", false);
+                mostrarTela("telaInvasao", true);
+                etapaInvasao = 0;
+                mostrarFalaInvasao();
+                window.scrollTo(0, 0);
+            }, 1400);
+        }
+
+        function mostrarFalaInvasao() {
+            const fala = document.getElementById("falaInvasao");
+            const foto = document.getElementById("zecaInvasao");
+            const atual = falasInvasao[etapaInvasao];
+
+            foto.src = atual.foto;
+
+            fala.innerHTML = `
+                ${atual.texto}
+                <br>
+                <button class="btn-fala" onclick="proximaFalaInvasao()">
+                    ${etapaInvasao === falasInvasao.length - 1
+                        ? "Começar o desafio 📸"
+                        : "Continuar 🐾"}
+                </button>
+            `;
+        }
+
+        function proximaFalaInvasao() {
+            etapaInvasao++;
+
+            if (etapaInvasao >= falasInvasao.length) {
+                iniciarDesafio();
+                return;
+            }
+
+            mostrarFalaInvasao();
+        }
+
+        /* Mostrar e esconder telas */
+        function mostrarTela(id, mostrar) {
+            const tela = document.getElementById(id);
+            tela.classList.toggle("ativa", mostrar);
+        }
+
+        /* Iniciar desafio */
+        let memoriaAtual = 0;
+        let respostaEmAndamento = false;
+
+        function iniciarDesafio() {
+            memoriaAtual = 0;
+            respostaEmAndamento = false;
+
+            mostrarTela("telaInvasao", false);
+            mostrarTela("telaDesafio", true);
+
+            carregarMemoria();
+            window.scrollTo(0, 0);
+        }
+
+        /* Carregar memória */
+        function carregarMemoria() {
+            const memoria = memorias[memoriaAtual];
+            respostaEmAndamento = false;
+
+            document.getElementById("numeroMemoria").textContent = memoriaAtual + 1;
+            document.getElementById("barraProgresso").style.width =
+                ((memoriaAtual + 1) / memorias.length) * 100 + "%";
+
+            document.getElementById("fotoMemoria").src = memoria.foto;
+
+            const container = document.getElementById("alternativas");
+            container.innerHTML = "";
+
+            memoria.alternativas.forEach((alternativa, indice) => {
+                const botao = document.createElement("button");
+                botao.className = "alternativa";
+                botao.textContent = alternativa;
+                botao.onclick = () => responder(indice);
+                container.appendChild(botao);
+            });
+
+            // O Zeca repete a pergunta exatamente como ela aparece no desafio.
+            trocarZeca(
+                "zeca-pergunta.png",
+                memoria.pergunta
+            );
+        }
+
+        /* Responder à pergunta */
+        function responder(indiceEscolhido) {
+            if (respostaEmAndamento) return;
+            respostaEmAndamento = true;
+
+            const memoria = memorias[memoriaAtual];
+            const botoes = document.querySelectorAll(".alternativa");
+
+            botoes.forEach(botao => botao.classList.add("bloqueada"));
+
+            if (indiceEscolhido === memoria.correta) {
+                botoes[indiceEscolhido].classList.add("correta");
+
+                trocarZeca(
+                    "zeca-apaixonado.png",
+                    "Você Acertou!!! O amor está no ar! 💜 Eu sou XITO🐶🎉 "
+                );
+            } else {
+                botoes[indiceEscolhido].classList.add("errada");
+                botoes[memoria.correta].classList.add("correta");
+
+                /*
+                 * Sorteia uma das duas expressões a cada resposta errada.
+                 */
+                const reacoesErradas = [
+                    {
+                        imagem: "zeca-triste.png",
+                        mensagem: "Poxa... 😢 Você errou! Não ama o papai mais 🥺"
+                    },
+                    {
+                        imagem: "zeca-desconfiado.png",
+                        mensagem: "Não acredito que você errou essa pergunta fácil. Preste mais atenção!"
+                    }
+                ];
+
+                const reacao = reacoesErradas[
+                    Math.floor(Math.random() * reacoesErradas.length)
+                ];
+
+                trocarZeca(reacao.imagem, reacao.mensagem);
+            }
+
+            setTimeout(() => {
+                memoriaAtual++;
+
+                if (memoriaAtual < memorias.length) {
+                    carregarMemoria();
+                    window.scrollTo(0, 0);
+                } else {
+                    mostrarResultado();
+                }
+            }, 2200);
+        }
+
+        /* Trocar a imagem e a fala do Zeca no desafio */
+        function trocarZeca(imagem, mensagem) {
+            const foto = document.getElementById("zecaDesafio");
+            const fala = document.getElementById("falaZeca");
+
+            foto.src = imagem;
+            fala.innerHTML = mensagem;
+
+            foto.style.transform = "scale(.9)";
+
+            setTimeout(() => {
+                foto.style.transform = "scale(1)";
+            }, 150);
+        }
+
+        /* Resultado final */
+        function mostrarResultado() {
+            mostrarTela("telaDesafio", false);
+            mostrarTela("telaFinal", true);
+
+            etapaFinal = 0;
+            mostrarFalaFinal();
+            criarCupons();
+
+            window.scrollTo(0, 0);
+        }
+
+        /* Falas finais do Zeca */
+        const falasFinais = [
+            {
+                foto: "zeca-feliz.png",
+                texto: `
+                    <strong>AU! EU SOU XITIZU! 🐶🎉</strong>
+                    <br><br>
+                    Você chegou até o final!
+                `
+            },
+            {
+                foto: "zeca-feliz2.png",
+                texto: `
+                    <strong>PARABENS POR COMPLETAR O DESAFIO DAS MEMORIAS!!</strong>
+                    <br><br>
+                    Espero que tenha gostado. O papai fez com muito carinho para você! <3
+                `
+            },
+            {
+                foto: "zeca-feliz2.png",
+                texto: `
+                    <strong>Você ganhou TODOS os 12 cupons! 🎁💜</strong>
+                    <br><br>
+                    Mesmo se você errasse todas as perguntas, eu daria os cupons do mesmo jeito.
+                    <br><br>
+                    Afinal...
+                    <br><br>
+                    <strong>EU SOU XITO!🐶</strong>
+                `
+            }
+        ];
+
+        let etapaFinal = 0;
+
+        function mostrarFalaFinal() {
+            const fala = document.getElementById("falaFinal");
+            const foto = document.getElementById("zecaFinal");
+            const atual = falasFinais[etapaFinal];
+
+            foto.src = atual.foto;
+
+            fala.innerHTML = `
+                ${atual.texto}
+                <br>
+                <button class="btn-fala" onclick="proximaFalaFinal()">
+                    ${etapaFinal === falasFinais.length - 1
+                        ? "Ver meus cupons! 🎁"
+                        : "Continuar 🐾"}
+                </button>
+            `;
+        }
+
+        function proximaFalaFinal() {
+            etapaFinal++;
+
+            if (etapaFinal >= falasFinais.length) {
+                document.querySelector(".certificado").scrollIntoView({
+                    behavior: "smooth"
+                });
+                return;
+            }
+
+            mostrarFalaFinal();
+        }
+
+        /* Criar os cupons */
+        function criarCupons() {
+            const container = document.getElementById("listaCupons");
+            container.innerHTML = "";
+
+            cupons.forEach((cupom, indice) => {
+                const elemento = document.createElement("div");
+                elemento.className = "cupom";
+
+                elemento.innerHTML = `
+                    <span class="cupom-emoji">${cupom.emoji}</span>
+                    <h3>${cupom.nome}</h3>
+                    <p>${cupom.descricao}</p>
+                    <button class="btn-cupom" onclick="resgatarCupom(${indice})">
+                        Resgatar Cupom 💜
+                    </button>
+                `;
+
+                container.appendChild(elemento);
+            });
+        }
+
+        /* Resgatar cupom pelo WhatsApp */
+        function resgatarCupom(indice) {
+            const cupom = cupons[indice];
+
+            /*
+             * Troque pelo seu número real:
+             * 55 + DDD + número, sem espaços ou símbolos.
+             */
+            const numeroWhatsApp = "5571996314114";
+
+            const url =
+                "https://wa.me/" +
+                numeroWhatsApp +
+                "?text=" +
+                encodeURIComponent(cupom.mensagem);
+
+            window.open(url, "_blank");
+
+            abrirModal(
+                cupom.nome,
+                "O cupom foi preparado para você! 🐶💜"
+            );
+        }
+
+        /* Modal */
+        function abrirModal(titulo, texto) {
+            document.getElementById("modalTitulo").textContent = titulo;
+            document.getElementById("modalTexto").textContent = texto;
+            document.getElementById("modal").classList.add("ativo");
+        }
+
+        function fecharModal() {
+            document.getElementById("modal").classList.remove("ativo");
+        }
+
+        function fecharModalFora(evento) {
+            if (evento.target.id === "modal") {
+                fecharModal();
+            }
+        }
+
+        document.addEventListener("keydown", function(evento) {
+            if (evento.key === "Escape") {
+                fecharModal();
+            }
+        });
+    </script>
+</body>
+</html>
